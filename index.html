@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Dit is index.html voor eindopdracht h7 javascript</title>
+  <link rel=”manifest” href=”manifest.json” />
+
+    <!-- Service Worker registreren -->
+		<script>
+						window.onload = function(){
+			
+				
+			
+			
+				if ('serviceWorker' in navigator) {
+					navigator.serviceWorker.register('sw.js').then(
+						registratie=> {
+							console.log(`Registratie gelukt: ${registratie.scope}`);
+	
+							if ('PushManager' in window){
+								console.log("Push berichten worden ondersteund!");						
+								
+								Notification.requestPermission().then(
+									antwoord => {
+										if (antwoord === 'default'){
+											console.log('Helaas; notificatie verzoek weggeklikt');
+											return;
+										}
+										
+										if (antwoord === 'denied'){
+											console.log('Helaas; notificaties geweigerd');
+											return;
+										}
+									
+										if (antwoord==='granted'){
+											console.log('Hoera! We hebben toestemming voor notificaties');
+											
+											// Check bestaande registratie en maak gebruiker:
+											registratie.pushManager.getSubscription().then(
+													sub =>{
+														if (sub === null) {
+															console.log("Er is nog geen geregistreerde Push-gebruiker");
+															//maakPushUser(registratie);
+														}
+													}
+											);
+										}
+									}
+								);
+							}
+						}
+					).catch(
+						fout=> {
+							console.log(`Er is iets foutgegaan: ${fout}`);
+						}
+					);
+
+					// function maakPushUser(registratie){				   
+						// const publicKey = urlBase64ToUint8Array('BO_jVugPTE8AMOQqIGWEPcbJWRKI6nI6IdnH7vLN4_KoPMn9hySs9-w-b4cMytP3Z_YnZeFh2lWqJD2xepMitTY');
+						
+						// registratie.pushManager.subscribe(
+							// {
+								// userVisibleOnly: true,
+								// applicationServerKey: publicKey
+							// }
+						// ).then(
+							// sub => {
+								// updateSubscriptionAtServer(sub);
+								// console.log("User geabonneerd op meldingen");
+							// }
+						// ).catch(
+							// fout => {
+								// console.log(`Abonneren op notificaties niet gelukt: ${fout}`);
+							// }
+						// );
+					// }
+					
+					// function updateSubscriptionAtServer(subscriptie){
+						// /* Hier schrijven we normaal info naar de server */
+						// console.dir(subscriptie);
+					// }
+					
+
+				}
+			}
+  </script>
+</head>
+<body>
+  Nou vooruit e ris ook nog wat te zien.
+  ik denk dat dit genoeg is voor de registratie
+</body>
+</html>
+
+
+
