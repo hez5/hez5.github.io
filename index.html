@@ -6,10 +6,48 @@
     <!-- Service Worker registreren -->
 		<script>
 						window.onload = function(){
-			
+                        let but = document.getElementById("submit");
+                        let div = document.getElementById("div");
+                         let socket = new WebSocket('wss://demos.kaazing.com/echo');
+                                    // Bij connectie open:
+                                  socket.onopen = function(ev) {
+                                    console.log('Verbinding gemaakt!');
+                                  };
+                                  
+                                  // Bij mislukte connectie:
+                                  socket.onerror = function(err){
+                                    console.log(`Er is iets misgegaan: ${err}`)
+                                  }
+                        but.addEventListener('click', event  => {
+                                    event.preventDefault();
+                                    console.log("onload add click");
+                                    let content = document.getElementById('invoer').value;
+                                    if (content != ''){
+                                      socket.send(content);
+                                    } else {
+                                      alert('Geen bericht ingevoerd');
+                                    }
+                                    });
+                                  // Bij ontvangen van bericht:
+                                  socket.onmessage = function(ev) {
+                                    let bericht = ev.data;
+                                    let item = document.createElement("span");
+                                    item.textContent = bericht;
+                                    div.appendChild(item);
+                                    div.appendChild(document.createElement('br'));
+                                    document.getElementById('invoer').value = "";
+                                  };
+                                  
+  
+    
+    
+  };
+
+                                                               
+			            
 				
 			
-			
+	/*		dit was h7 in de onload
 				if ('serviceWorker' in navigator) {
 					navigator.serviceWorker.register('sw.js').then(
 						registratie=> {
@@ -52,7 +90,6 @@
 							console.log(`Er is iets foutgegaan: ${fout}`);
 						}
 					);
-
 					// function maakPushUser(registratie){				   
 						// const publicKey = urlBase64ToUint8Array('BO_jVugPTE8AMOQqIGWEPcbJWRKI6nI6IdnH7vLN4_KoPMn9hySs9-w-b4cMytP3Z_YnZeFh2lWqJD2xepMitTY');
 						
@@ -74,20 +111,22 @@
 					// }
 					
 					// function updateSubscriptionAtServer(subscriptie){
-						// /* Hier schrijven we normaal info naar de server */
+						// /* Hier schrijven we normaal info naar de server 
 						// console.dir(subscriptie);
 					// }
 					
-
 				}
 			}
+            */
+            
   </script>
 </head>
 <body>
-  Nou vooruit e ris ook nog wat te zien.
-  ik denk dat dit genoeg is voor de registratie
+ <form action="">
+   <input id="invoer"type="text" placeholder="dit bericht wordt verstuurd"></input>
+   <input id="submit" type="submit">    </input> 
+   </form>
+   <div id="div"></div>
 </body>
 </html>
-
-
 
