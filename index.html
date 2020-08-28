@@ -63,12 +63,12 @@
 
 			werker1.addEventListener('message', function(msg){
 				console.log('Antwoord van 1: ' + msg.data);
-				mijndiv.InnerHTML = mijndiv.InnerHTML +' Antwoord van 1: ' + msg.data + '<br/>'
+				mijndiv.innerHTML = mijndiv.innerHTML +' Antwoord van 1: ' + msg.data + '<br/>'
 			});
 
 			werker2.addEventListener('message', function(msg){
 				console.log('Antwoord van 2: ' + msg.data);
-				mijndiv.InnerHTML = mijndiv.InnerHTML +' Antwoord van 2: ' + msg.data + '<br/>'
+				mijndiv.innerHTML = mijndiv.innerHTML +' Antwoord van 2: ' + msg.data + '<br/>'
 			});
 
 			// Buffer delen met de workers
