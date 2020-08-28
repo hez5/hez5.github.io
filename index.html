@@ -4,7 +4,7 @@
   <link rel=”manifest” href=”manifest.json” />
 
     <!-- Service Worker registreren -->
-		<script>
+<!-- 		<script>
 						window.onload = function(){
                         let but = document.getElementById("submit");
                         let div = document.getElementById("div");
@@ -39,14 +39,43 @@
                                   };    
   };
             
-  </script>
+  </script> -->
+	<script>
+			let buffer = new SharedArrayBuffer(12);
+			let reeks = new Int32Array(buffer);
+
+			Atomics.store(reeks, 0, 42);
+
+			let werker1 = new Worker('script1.js');
+			let werker2 = new Worker('script2.js');
+			let mijndiv = document.getElementById("tekstdiv");
+
+			werker1.addEventListener('message', function(msg){
+				console.log('Antwoord van 1: ' + msg.data);
+				mijndiv.setInnerHTML = mijndiv.setInnerHTML + Antwoord van 1: ' + msg.data + '<br/>'
+			});
+
+			werker2.addEventListener('message', function(msg){
+				console.log('Antwoord van 2: ' + msg.data);
+				mijndiv.setInnerHTML = mijndiv.setInnerHTML + Antwoord van 2: ' + msg.data + '<br/>'
+			});
+
+			// Buffer delen met de workers
+			werker1.postMessage(buffer);
+			werker2.postMessage(buffer);
+
+			setTimeout(function(){
+				Atomics.store(reeks, 0, 10);
+			}, 5000);
+		</script>
 </head>
 <body>
- <form action="">
+<!--  <form action="">
    <input id="invoer"type="text" placeholder="dit bericht wordt verstuurd"></input>
    <input id="submit" type="submit">    </input> 
    </form>
-   <div id="div"></div>
+   <div id="div"></div> -->
+	<div id="tekstdiv"></div>
 </body>
 </html>
 
