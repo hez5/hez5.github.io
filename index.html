@@ -40,6 +40,17 @@
   };
             
   </script> -->
+	
+</head>
+<body>
+<!--  <form action="">
+   <input id="invoer"type="text" placeholder="dit bericht wordt verstuurd"></input>
+   <input id="submit" type="submit">    </input> 
+   </form>
+   <div id="div"></div> -->
+	Kijk in de console
+	<div id="tekstdiv"></div>
+	
 	<script>
 			let buffer = new SharedArrayBuffer(12);
 			let reeks = new Int32Array(buffer);
@@ -68,15 +79,6 @@
 				Atomics.store(reeks, 0, 10);
 			}, 5000);
 		</script>
-</head>
-<body>
-<!--  <form action="">
-   <input id="invoer"type="text" placeholder="dit bericht wordt verstuurd"></input>
-   <input id="submit" type="submit">    </input> 
-   </form>
-   <div id="div"></div> -->
-	Kijk in de console
-	<div id="tekstdiv"></div>
 </body>
 </html>
 
