@@ -7,4 +7,7 @@ self.addEventListener('message', function(msg){
 	Atomics.wait(reeks, 0, 15000);
 
 	self.postMessage(`Data gewijzigd naar: ` + Atomics.load(reeks,0));
+	setTimeout(function(){
+				self.postMessage(`Data gewijzigd naar: ` + Atomics.load(reeks,0));
+			}, 5000);
 });
