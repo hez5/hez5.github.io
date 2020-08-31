@@ -5,7 +5,7 @@ self.addEventListener('message', function(msg){
 	}
 
 	// Wacht maximaal 15sec op een wijziging in de array
-	Atomics.wait(reeks, 0, 15000);
+	//Atomics.wait(reeks, 0, 15000);
 
 	self.postMessage(`Data gewijzigd naar: ` + Atomics.load(reeks,0));
 });
