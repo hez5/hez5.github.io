@@ -52,7 +52,7 @@
 	<div id="tekstdiv"></div>
 	
 	<script>
-			let buffer = new SharedArrayBuffer(12);
+			let buffer = new SharedArrayBuffer(10);
 			let reeks = new Int32Array(buffer);
 
 			Atomics.store(reeks, 0, 42);
