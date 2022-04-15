@@ -2,83 +2,52 @@
 <head>
 <title>intarraytest</title>
   <link rel=”manifest” href=”manifest.json” />
-
-    <!-- Service Worker registreren -->
-<!-- 		<script>
-						window.onload = function(){
-                        let but = document.getElementById("submit");
-                        let div = document.getElementById("div");
-                         let socket = new WebSocket('wss://demos.kaazing.com/echo');
-                                    // Bij connectie open:
-                                  socket.onopen = function(ev) {
-                                    console.log('Verbinding gemaakt!');
-                                  };
-                                  
-                                  // Bij mislukte connectie:
-                                  socket.onerror = function(err){
-                                    console.log(`Er is iets misgegaan: ${err}`)
-                                  }
-                        but.addEventListener('click', event  => {
-                                    event.preventDefault();
-                                    console.log("onload add click");
-                                    let content = document.getElementById('invoer').value;
-                                    if (content != ''){
-                                      socket.send(content);
-                                    } else {
-                                      alert('Geen bericht ingevoerd');
-                                    }
-                                    });
-                                  // Bij ontvangen van bericht:
-                                  socket.onmessage = function(ev) {
-                                    let bericht = ev.data;
-                                    let item = document.createElement("span");
-                                    item.textContent = bericht;
-                                    div.appendChild(item);
-                                    div.appendChild(document.createElement('br'));
-                                    document.getElementById('invoer').value = "";
-                                  };    
-  };
-            
-  </script> -->
+<script>
+   window.onload = function()(
+         // Service Worker registreren 
+     if ('serviceWorker in navigator){
+	  navigator.serviceWorker.register(index.js).then(
+	    registratie => {
+		    console.log(`Registratie gelukt: ${registratie.scope}`);
+		    }
+	  ).catch(
+	   	 fout => {console.log(`Er is iets fout gegaan: ${fout}`)}
+	  )
+	}
+    else {
+	console.log('helaas, geen werker')
+	}
 	
+	//input item van change event voorzien
+	document.getElementById("cursus").addEventListener('change',
+	      function(ev){
+		 let cursus_in  = document.getElementById("cursus").value
+		 if (cursus_in == null) return;
+		 let url="https://www.vijfhart.nl/opleidingen/"
+		 url = url||cursus_in
+		 fetch(url).then(
+			 response => {
+		           return  response.text()
+			 }
+		 ).then(
+			 t => {
+			 document.getElementById("resultaat").innerHTML = t
+			 }
+		 ).catch(
+		   fout => {
+			    console.log(`Ging iets fout: ${fout}`);
+			  }
+		 )
+	     }	
+							   
+	) // einde toevoeg eventlistener
+   ) // window onload	
+</script>	
 </head>
 <body>
-<!--  <form action="">
-   <input id="invoer"type="text" placeholder="dit bericht wordt verstuurd"></input>
-   <input id="submit" type="submit">    </input> 
-   </form>
-   <div id="div"></div> -->
-	Kijk in de console
-	<div id="tekstdiv"></div>
-	
-	<script>
-			let buffer = new SharedArrayBuffer(10);
-			let reeks = new Int32Array(buffer);
-
-			Atomics.store(reeks, 0, 42);
-
-			let werker1 = new Worker('script1.js');
-			let werker2 = new Worker('script2.js');
-			let mijndiv = document.getElementById("tekstdiv");
-
-			werker1.addEventListener('message', function(msg){
-				console.log('Antwoord van 1: ' + msg.data);
-				mijndiv.innerHTML = mijndiv.innerHTML +' Antwoord van 1: ' + msg.data + '<br/>'
-			});
-
-			werker2.addEventListener('message', function(msg){
-				console.log('Antwoord van 2: ' + msg.data);
-				mijndiv.innerHTML = mijndiv.innerHTML +' Antwoord van 2: ' + msg.data + '<br/>'
-			});
-
-			// Buffer delen met de workers
-			werker1.postMessage(buffer);
-			werker2.postMessage(buffer);
-
-			setTimeout(function(){
-				Atomics.store(reeks, 0, 10);
-			}, 5000);
-		</script>
+	<div>kijk in de console</div>
+	<label>cursus</label><input type="text" id="cursus"/>
+	<div id="resultaat"></div>
 </body>
 </html>
 
