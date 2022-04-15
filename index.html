@@ -6,7 +6,7 @@
    window.onload = function()(
          // Service Worker registreren 
      if ('serviceWorker in navigator){
-	  navigator.serviceWorker.register(index.js).then(
+	  navigator.serviceWorker.register(sw.js).then(
 	    registratie => {
 		    console.log(`Registratie gelukt: ${registratie.scope}`);
 		    }
