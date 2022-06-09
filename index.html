@@ -3,7 +3,7 @@
 <title>intarraytest</title>
   <link rel=”manifest” href=”manifest.json” />
 <script>
-   window.onload = function()(
+   window.onload = function(){
          // Service Worker registreren 
      if ('serviceWorker in navigator){
 	  navigator.serviceWorker.register(sw.js).then(
@@ -41,7 +41,7 @@
 	     }	
 							   
 	) // einde toevoeg eventlistener
-   ) // window onload	
+	} // window onload	
 </script>	
 </head>
 <body>
