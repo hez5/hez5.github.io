@@ -1,18 +1,4 @@
-//code nino
-self.addEventListener('install', (e) => {
-    self.skipWaiting();
-    console.log('Service Worker is active');
-});
 
-self.addEventListener('active', (e) => {
-    console.log('Installing Service Worker');
-});
-
-self.addEventListener('fetch', (e) => {
-    // Do something here with the request.
-});
-//code hez5
-/*
 self.addEventListener('install', (ev) => {
 	// In geval er nog een oudere Service Worker versie is,
 	// zal hij blijven wachten met installeren totdat
@@ -65,4 +51,4 @@ self.addEventListener('fetch', (ev) => {
 	);
 });
 
-*/
+
