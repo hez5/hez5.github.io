@@ -1,4 +1,13 @@
+// code Maura
 
+self.addEventListener('install', (ev) => {
+
+	self.skipWaiting();
+	console.log('Service worker installatie gedaan');
+});
+
+
+/*
 self.addEventListener('install', (ev) => {
 	// In geval er nog een oudere Service Worker versie is,
 	// zal hij blijven wachten met installeren totdat
@@ -50,5 +59,5 @@ self.addEventListener('fetch', (ev) => {
 		}()
 	);
 });
-
+*/
 
