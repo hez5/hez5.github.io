@@ -29,7 +29,7 @@ self.addEventListener('fetch', (ev) => {
 			console.dir(ev.request);
 			
 			if (ev.request.url.indexOf('sql')>-1){
-			        console.log(`sq opgegeven `);
+			        console.log(`sql opgegeven `);
 				let oudRequest = ev.request;
 				let nieuweURL = oudRequest.url.replace('edwalter','stinow');
 			
@@ -44,7 +44,7 @@ self.addEventListener('fetch', (ev) => {
 				);
 			
 				return fetch(nieuwRequest); //Hier wordt een Promise verwacht
-			} else {
+			} else { console.log(`GEEn sql opgegeven `);
 				return fetch(ev.request);
 			}
 		}()
