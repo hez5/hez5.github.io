@@ -29,7 +29,7 @@ self.addEventListener('fetch', (ev) => {
 			console.dir(ev.request);
 			
 			if (ev.request.url.indexOf('sql')>-1){
-			
+			        console.log(`sq opgegeven `);
 				let oudRequest = ev.request;
 				let nieuweURL = oudRequest.url.replace('edwalter','stinow');
 			
