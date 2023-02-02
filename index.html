@@ -26,7 +26,7 @@
 		 console.log(cursus_in + " : cursus_in")
 		 if (cursus_in == null) return;
 		 let url="https://www.vijfhart.nl/opleidingen/"
-		 url = url||cursus_in
+		 url = url+cursus_in
 		 fetch(url).then(
 			 response => {
 		           return  response.text()
