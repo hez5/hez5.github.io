@@ -32,7 +32,7 @@ self.addEventListener('fetch', (ev) => {
 			        console.log(`sql opgegeven `);
 				let oudRequest = ev.request;
 				let nieuweURL = oudRequest.url.replace('edwalter','stinow');
-			
+			        console.log(oud.Request.mode)
 				let nieuwRequest = new Request(
 					nieuweURL,
 					{
