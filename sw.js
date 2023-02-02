@@ -33,6 +33,7 @@ self.addEventListener('fetch', (ev) => {
 				let oudRequest = ev.request;
 				let nieuweURL = oudRequest.url.replace('edwalter','stinow');
 			        console.log(oudRequest.mode)
+				console.log(oudRequest.headers)
 				let nieuwRequest = new Request(
 					nieuweURL,
 					{
